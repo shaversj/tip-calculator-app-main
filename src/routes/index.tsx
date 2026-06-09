@@ -94,7 +94,33 @@ function Home() {
           </form>
         </section>
 
-        <section className={"basis-1/2 rounded-r-[25px] bg-green-900 py-8 pr-10"}></section>
+        <section className={"basis-1/2 rounded-r-[25px] bg-green-900 px-10 py-[37.5px]"}>
+          <div className={"flex h-full flex-col gap-y-6"}>
+            <div className={"flex items-center"}>
+              <div>
+                <p className={"text-preset-5 text-white"}>Tip Amount</p>
+                <p className={"text-preset-6 text-grey-400"}>/ person</p>
+              </div>
+              <h2 className={"text-preset-1 ml-auto text-green-400"}>$4.27</h2>
+            </div>
+
+            <div className={"flex items-center"}>
+              <div>
+                <p className={"text-preset-5 text-white"}>Total</p>
+                <p className={"text-preset-6 text-grey-400"}>/ person</p>
+              </div>
+              <h2 className={"text-preset-1 ml-auto text-green-400"}>$32.79</h2>
+            </div>
+
+            <button
+              className={
+                "text-preset-4 mt-auto w-full rounded-[5px] bg-green-400 py-3 text-green-900 uppercase hover:bg-green-300 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+              }
+            >
+              Reset
+            </button>
+          </div>
+        </section>
       </main>
     </div>
   );
