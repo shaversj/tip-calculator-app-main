@@ -61,7 +61,7 @@ function Home() {
               children={(field) => (
                 <fieldset className={"flex flex-col gap-y-2"}>
                   <legend className={"text-preset-5 text-grey-500"}>Select Tip %</legend>
-                  <div className={"flex flex-wrap gap-4 pt-2"}>
+                  <div className={"grid grid-cols-3 gap-4 pt-2"}>
                     {[5, 10, 15, 25, 50].map((tip) => {
                       const checked = field.state.value === tip;
                       return (
@@ -83,28 +83,28 @@ function Home() {
                         </div>
                       );
                     })}
-                  </div>
-                  <div className={"text-preset-3 bg-grey-50 h-12 w-29 rounded-[5px] pl-3 placeholder:text-white"}>
-                    <label className={""}>
-                      <input
-                        type="number"
-                        className={
-                          "placeholder:text-preset-3 placeholder:text-grey-550 h-12 w-29 [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
-                        }
-                        placeholder="Custom"
-                        onChange={(e) => {
-                          const value = e.target.value;
-                          if (value === "") {
-                            field.setValue("");
-                          } else {
-                            const num = parseFloat(value);
-                            if (!isNaN(num)) {
-                              field.setValue(num);
-                            }
+                    <div className={"text-preset-3 bg-grey-50 h-12 w-29 rounded-[5px] pl-3 placeholder:text-white"}>
+                      <label className={""}>
+                        <input
+                          type="number"
+                          className={
+                            "placeholder:text-preset-3 placeholder:text-grey-550 h-12 w-26 [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
                           }
-                        }}
-                      />
-                    </label>
+                          placeholder="Custom"
+                          onChange={(e) => {
+                            const value = e.target.value;
+                            if (value === "") {
+                              field.setValue("");
+                            } else {
+                              const num = parseFloat(value);
+                              if (!isNaN(num)) {
+                                field.setValue(num);
+                              }
+                            }
+                          }}
+                        />
+                      </label>
+                    </div>
                   </div>
                 </fieldset>
               )}
