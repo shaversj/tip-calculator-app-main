@@ -10,6 +10,8 @@ type CalculatorFormValues = {
   people: string;
 };
 
+const presetTips = [5, 10, 15, 25, 50];
+
 function getCalculatorResults(values: CalculatorFormValues) {
   const billNum = parseFloat(values.bill);
   const tipNum = parseFloat(values.tip.toString());
@@ -58,56 +60,53 @@ function Home() {
 
             <form.Field
               name="tip"
-              children={(field) => (
-                <fieldset className={"flex flex-col gap-y-2"}>
-                  <legend className={"text-preset-5 text-grey-500"}>Select Tip %</legend>
-                  <div className={"grid grid-cols-3 gap-4 pt-2"}>
-                    {[5, 10, 15, 25, 50].map((tip) => {
-                      const checked = field.state.value === tip;
-                      return (
-                        <div
-                          key={tip}
-                          className={`text-preset-3 grid h-12 w-29 appearance-none place-items-center rounded-[5px] hover:bg-green-200 hover:text-green-900 ${checked ? "bg-green-400 text-green-900" : "bg-green-900 text-white"}`}
-                        >
-                          <label className={"flex items-center gap-2"}>
-                            <input
-                              className={"appearance-none"}
-                              name={field.name}
-                              type="radio"
-                              checked={checked}
-                              value={tip}
-                              onChange={() => field.setValue(tip)}
-                            />
-                            {tip}%
-                          </label>
-                        </div>
-                      );
-                    })}
+              children={(field) => {
+                const customTipValue = typeof field.state.value === "number" && presetTips.includes(field.state.value) ? "" : field.state.value;
+
+                return (
+                  <fieldset className={"flex flex-col gap-y-2"}>
+                    <legend className={"text-preset-5 text-grey-500"}>Select Tip %</legend>
+                    <div className={"grid grid-cols-3 gap-4 pt-2"}>
+                      {presetTips.map((tip) => {
+                        const checked = field.state.value === tip;
+                        return (
+                          <div
+                            key={tip}
+                            className={`text-preset-3 grid h-12 w-29 appearance-none place-items-center rounded-[5px] hover:bg-green-200 hover:text-green-900 ${checked ? "bg-green-400 text-green-900" : "bg-green-900 text-white"}`}
+                          >
+                            <label className={"flex items-center gap-2"}>
+                              <input
+                                className={"appearance-none"}
+                                name={field.name}
+                                type="radio"
+                                checked={checked}
+                                value={tip}
+                                onChange={() => field.setValue(tip)}
+                              />
+                              {tip}%
+                            </label>
+                          </div>
+                        );
+                      })}
                     <div className={"text-preset-3 bg-grey-50 h-12 w-29 rounded-[5px] pl-3 placeholder:text-white"}>
                       <label className={""}>
                         <input
                           type="number"
+                          min="0"
+                          inputMode="decimal"
+                          value={customTipValue}
                           className={
                             "placeholder:text-preset-3 placeholder:text-grey-550 h-12 w-26 [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
                           }
                           placeholder="Custom"
-                          onChange={(e) => {
-                            const value = e.target.value;
-                            if (value === "") {
-                              field.setValue("");
-                            } else {
-                              const num = parseFloat(value);
-                              if (!isNaN(num)) {
-                                field.setValue(num);
-                              }
-                            }
-                          }}
+                          onChange={(e) => field.setValue(e.target.value)}
                         />
                       </label>
                     </div>
-                  </div>
-                </fieldset>
-              )}
+                    </div>
+                  </fieldset>
+                );
+              }}
             />
 
             <form.Field
