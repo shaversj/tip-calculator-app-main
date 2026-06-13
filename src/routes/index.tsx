@@ -48,12 +48,16 @@ function Home() {
                   <label className={"text-preset-5 text-grey-500"} htmlFor="bill">
                     Bill
                   </label>
-                  <input
-                    id="bill"
-                    value={field.state.value}
-                    onChange={(e) => field.setValue(e.target.value)}
-                    className={"bg-grey-50 text-preset-3 rounded-[5px] px-4 pt-2 text-green-900"}
-                  />
+                  <div className={"bg-grey-50 relative grid h-12 min-w-full place-items-center rounded-[5px] px-4"}>
+                    <img src="/icon-dollar.svg" alt="" aria-hidden="true" className="pointer-events-none absolute top-1/2 left-4 -translate-y-1/2" />
+                    <input
+                      id="bill"
+                      value={field.state.value}
+                      placeholder={"0"}
+                      onChange={(e) => field.setValue(e.target.value)}
+                      className={"bg-grey-50 text-preset-3 h-9 w-full text-right text-green-900"}
+                    />
+                  </div>
                 </div>
               )}
             />
@@ -88,21 +92,21 @@ function Home() {
                           </div>
                         );
                       })}
-                    <div className={"text-preset-3 bg-grey-50 h-12 w-29 rounded-[5px] pl-3 placeholder:text-white"}>
-                      <label className={""}>
-                        <input
-                          type="number"
-                          min="0"
-                          inputMode="decimal"
-                          value={customTipValue}
-                          className={
-                            "placeholder:text-preset-3 placeholder:text-grey-550 h-12 w-26 [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
-                          }
-                          placeholder="Custom"
-                          onChange={(e) => field.setValue(e.target.value)}
-                        />
-                      </label>
-                    </div>
+                      <div className={"text-preset-3 bg-grey-50 h-12 w-29 rounded-[5px] pl-3 placeholder:text-white"}>
+                        <label className={""}>
+                          <input
+                            type="number"
+                            min="0"
+                            inputMode="decimal"
+                            value={customTipValue}
+                            className={
+                              "placeholder:text-preset-3 placeholder:text-grey-550 h-12 w-26 [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+                            }
+                            placeholder="Custom"
+                            onChange={(e) => field.setValue(e.target.value)}
+                          />
+                        </label>
+                      </div>
                     </div>
                   </fieldset>
                 );
@@ -116,12 +120,16 @@ function Home() {
                   <label className={"text-preset-5 text-grey-500"} htmlFor="people">
                     Number of People
                   </label>
-                  <input
-                    id="people"
-                    value={field.state.value}
-                    onChange={(e) => field.setValue(e.target.value)}
-                    className={"bg-grey-50 text-preset-3 rounded-[5px] px-4 pt-2 text-green-900"}
-                  />
+                  <div className={"bg-grey-50 relative grid h-12 min-w-full place-items-center rounded-[5px] px-4"}>
+                    <img src="/icon-person.svg" alt="" aria-hidden="true" className="pointer-events-none absolute top-1/2 left-4 -translate-y-1/2" />
+                    <input
+                      id="people"
+                      value={field.state.value}
+                      placeholder={"0"}
+                      onChange={(e) => field.setValue(e.target.value)}
+                      className={"bg-grey-50 text-preset-3 h-9 w-full text-right text-green-900"}
+                    />
+                  </div>
                 </div>
               )}
             />
@@ -141,7 +149,10 @@ function Home() {
                       <p className={"text-preset-5 text-white"}>Tip Amount</p>
                       <p className={"text-preset-6 text-grey-400"}>/ person</p>
                     </div>
-                    <h2 className={"text-preset-1 ml-auto text-green-400"}>${calculatorResults?.tipAmount?.toFixed(2)}</h2>
+                    {/*<h2 className={"text-preset-1 ml-auto text-green-400"}>${calculatorResults?.tipAmount?.toFixed(2)}</h2>*/}
+                    <h2 className={"text-preset-1 ml-auto text-green-400"}>
+                      ${calculatorResults ? calculatorResults?.tipAmount?.toFixed(2) : "0.00"}
+                    </h2>
                   </div>
 
                   <div className={"flex items-center"}>
@@ -149,7 +160,8 @@ function Home() {
                       <p className={"text-preset-5 text-white"}>Total</p>
                       <p className={"text-preset-6 text-grey-400"}>/ person</p>
                     </div>
-                    <h2 className={"text-preset-1 ml-auto text-green-400"}>${calculatorResults?.total?.toFixed(2)}</h2>
+                    {/*<h2 className={"text-preset-1 ml-auto text-green-400"}>${calculatorResults?.total?.toFixed(2)}</h2>*/}
+                    <h2 className={"text-preset-1 ml-auto text-green-400"}>${calculatorResults ? calculatorResults?.total?.toFixed(2) : "0.00"}</h2>
                   </div>
 
                   <button
