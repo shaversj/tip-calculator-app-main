@@ -165,9 +165,8 @@ function Home() {
                   </div>
 
                   <button
-                    className={
-                      "text-preset-4 mt-auto w-full rounded-[5px] bg-green-400 py-3 text-green-900 uppercase hover:bg-green-300 focus:ring-2 focus:ring-blue-500 focus:outline-none"
-                    }
+                    className={`text-preset-4 mt-auto w-full rounded-[5px] py-3 text-green-900 uppercase focus:ring-2 focus:ring-blue-500 focus:outline-none ${calculatorResults ? "bg-green-400 hover:bg-green-300" : "bg-green-750 hover:bg-green-750 cursor-not-allowed"}`}
+                    disabled={!calculatorResults}
                     type={"button"}
                     onClick={() => {
                       form.reset();
