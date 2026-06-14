@@ -97,15 +97,19 @@ function Home() {
                           </div>
                         );
                       })}
-                      <div className={"text-preset-3 bg-grey-50 h-12 w-29 rounded-[5px] pl-3 placeholder:text-white"}>
-                        <label className={""}>
+                      <div
+                        className={
+                          "text-preset-3 bg-grey-50 flex h-12 w-29 items-center justify-center rounded-[5px] px-3 placeholder:text-white hover:outline-2 hover:outline-green-400"
+                        }
+                      >
+                        <label>
                           <input
                             type="number"
                             min="0"
                             inputMode="decimal"
                             value={customTipValue}
                             className={
-                              "placeholder:text-preset-3 placeholder:text-grey-550 h-12 w-26 [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+                              "placeholder:text-preset-3 placeholder:text-grey-550 h-full w-full [appearance:textfield] outline-none [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
                             }
                             placeholder="Custom"
                             onChange={(e) => field.setValue(e.target.value)}
@@ -156,14 +160,14 @@ function Home() {
           </form>
         </section>
 
-        <section className={"basis-1/2 rounded-r-[25px] bg-green-900 px-10 py-[37.5px]"}>
+        <section className={"my-8 mr-10 basis-1/2 rounded-[15px] bg-green-900"}>
           <form.Subscribe
             selector={(state) => state.values}
             children={(values) => {
               const calculatorResults = getCalculatorResults(values);
 
               return (
-                <div className={"flex h-full flex-col gap-y-6"}>
+                <div className={"flex h-full flex-col gap-y-6 px-10 py-[37.5px]"}>
                   <div className={"flex items-center"}>
                     <div>
                       <p className={"text-preset-5 text-white"}>Tip Amount</p>
