@@ -149,7 +149,6 @@ function Home() {
                       <p className={"text-preset-5 text-white"}>Tip Amount</p>
                       <p className={"text-preset-6 text-grey-400"}>/ person</p>
                     </div>
-                    {/*<h2 className={"text-preset-1 ml-auto text-green-400"}>${calculatorResults?.tipAmount?.toFixed(2)}</h2>*/}
                     <h2 className={"text-preset-1 ml-auto text-green-400"}>
                       ${calculatorResults ? calculatorResults?.tipAmount?.toFixed(2) : "0.00"}
                     </h2>
@@ -160,7 +159,6 @@ function Home() {
                       <p className={"text-preset-5 text-white"}>Total</p>
                       <p className={"text-preset-6 text-grey-400"}>/ person</p>
                     </div>
-                    {/*<h2 className={"text-preset-1 ml-auto text-green-400"}>${calculatorResults?.total?.toFixed(2)}</h2>*/}
                     <h2 className={"text-preset-1 ml-auto text-green-400"}>${calculatorResults ? calculatorResults?.total?.toFixed(2) : "0.00"}</h2>
                   </div>
 
