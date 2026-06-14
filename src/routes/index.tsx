@@ -48,14 +48,19 @@ function Home() {
                   <label className={"text-preset-5 text-grey-500"} htmlFor="bill">
                     Bill
                   </label>
-                  <div className={"bg-grey-50 relative grid h-12 min-w-full place-items-center rounded-[5px] px-4"}>
+                  <div
+                    className={
+                      "bg-grey-50 relative grid h-12 min-w-full place-items-center rounded-[5px] px-4 hover:outline-2 hover:outline-green-400" +
+                      (field.state.error ? " outline outline-red-500" : "")
+                    }
+                  >
                     <img src="/icon-dollar.svg" alt="" aria-hidden="true" className="pointer-events-none absolute top-1/2 left-4 -translate-y-1/2" />
                     <input
                       id="bill"
                       value={field.state.value}
                       placeholder={"0"}
                       onChange={(e) => field.setValue(e.target.value)}
-                      className={"bg-grey-50 text-preset-3 h-9 w-full text-right text-green-900"}
+                      className={"bg-grey-50 text-preset-3 h-9 w-full text-right text-green-900 outline-none"}
                     />
                   </div>
                 </div>
@@ -115,19 +120,34 @@ function Home() {
 
             <form.Field
               name="people"
+              validators={{
+                onChange: ({ value }) => (parseFloat(value) === 0 ? "Can't be zero" : undefined),
+              }}
               children={(field) => (
                 <div className={"flex flex-col gap-y-2 pt-10"}>
-                  <label className={"text-preset-5 text-grey-500"} htmlFor="people">
-                    Number of People
-                  </label>
-                  <div className={"bg-grey-50 relative grid h-12 min-w-full place-items-center rounded-[5px] px-4"}>
+                  <div className={"flex"}>
+                    <label className={"text-preset-5 text-grey-500"} htmlFor="people">
+                      Number of People
+                    </label>
+                    {!field.state.meta.isValid && (
+                      <em className={"text-preset-5 ml-auto text-orange-400"} role="alert">
+                        {field.state.meta.errors.join(", ")}
+                      </em>
+                    )}
+                  </div>
+
+                  <div
+                    className={`bg-grey-50 relative grid h-12 min-w-full place-items-center rounded-[5px] px-4 ${
+                      !field.state.meta.isValid ? "outline-2 outline-orange-400 active:outline-2" : "hover:outline-2 hover:outline-green-400"
+                    }`}
+                  >
                     <img src="/icon-person.svg" alt="" aria-hidden="true" className="pointer-events-none absolute top-1/2 left-4 -translate-y-1/2" />
                     <input
                       id="people"
                       value={field.state.value}
                       placeholder={"0"}
                       onChange={(e) => field.setValue(e.target.value)}
-                      className={"bg-grey-50 text-preset-3 h-9 w-full text-right text-green-900"}
+                      className={"bg-grey-50 text-preset-3 h-9 w-full text-right text-green-900 outline-none"}
                     />
                   </div>
                 </div>
