@@ -37,10 +37,14 @@ function Home() {
 
   return (
     <div className="bg-grey-200 flex min-h-screen flex-col items-center justify-center">
-      <img src={"/logo.svg"} alt="logo" />
-      <main className={"mt-[87.86px] flex h-120.25 w-230 gap-x-12 rounded-[25px] bg-white shadow-[0_32px_43px_rgba(79,166,175,0.200735)]"}>
-        <section className={"basis-1/2 py-8 pl-10"}>
-          <form className={"pt-[16.5px]"}>
+      <img className={"pt-12.5 lg:pt-0"} src={"/logo.svg"} alt="logo" />
+      <main
+        className={
+          "mt-[40.86px] flex flex-col rounded-[25px] bg-white shadow-[0_32px_43px_rgba(79,166,175,0.200735)] md:mx-20 md:gap-y-10 lg:mt-[87.86px] lg:h-120.25 lg:w-230 lg:flex-row lg:gap-x-12"
+        }
+      >
+        <section className={"px-6 pb-8 md:px-[75.5px] md:pb-10 lg:basis-1/2 lg:px-0 lg:py-8 lg:pb-0 lg:pl-10"}>
+          <form className={"pt-8.5 md:pt-13.5 lg:pt-[16.5px]"}>
             <form.Field
               name="bill"
               children={(field) => (
@@ -49,10 +53,7 @@ function Home() {
                     Bill
                   </label>
                   <div
-                    className={
-                      "bg-grey-50 relative grid h-12 min-w-full place-items-center rounded-[5px] px-4 hover:outline-2 hover:outline-green-400" +
-                      (field.state.error ? " outline outline-red-500" : "")
-                    }
+                    className={`bg-grey-50 relative grid h-12 min-w-full place-items-center rounded-[5px] px-4 hover:outline-2 hover:outline-green-400 ${!field.state.meta.isValid ? "outline outline-red-500" : ""}`}
                   >
                     <img src="/icon-dollar.svg" alt="" aria-hidden="true" className="pointer-events-none absolute top-1/2 left-4 -translate-y-1/2" />
                     <input
@@ -75,13 +76,13 @@ function Home() {
                 return (
                   <fieldset className={"flex flex-col gap-y-2"}>
                     <legend className={"text-preset-5 text-grey-500"}>Select Tip %</legend>
-                    <div className={"grid grid-cols-3 gap-4 pt-2"}>
+                    <div className={"grid grid-cols-2 gap-4 pt-2 md:grid-cols-3"}>
                       {presetTips.map((tip) => {
                         const checked = field.state.value === tip;
                         return (
                           <div
                             key={tip}
-                            className={`text-preset-3 grid h-12 w-29 appearance-none place-items-center rounded-[5px] hover:bg-green-200 hover:text-green-900 ${checked ? "bg-green-400 text-green-900" : "bg-green-900 text-white"}`}
+                            className={`text-preset-3 grid h-12 appearance-none place-items-center rounded-[5px] hover:bg-green-200 hover:text-green-900 lg:w-29 ${checked ? "bg-green-400 text-green-900" : "bg-green-900 text-white"}`}
                           >
                             <label className={"flex items-center gap-2"}>
                               <input
@@ -99,7 +100,7 @@ function Home() {
                       })}
                       <div
                         className={
-                          "text-preset-3 bg-grey-50 flex h-12 w-29 items-center justify-center rounded-[5px] px-3 placeholder:text-white hover:outline-2 hover:outline-green-400"
+                          "text-preset-3 bg-grey-50 flex h-12 items-center justify-center rounded-[5px] px-3 placeholder:text-white hover:outline-2 hover:outline-green-400 lg:w-29"
                         }
                       >
                         <label>
@@ -160,7 +161,7 @@ function Home() {
           </form>
         </section>
 
-        <section className={"my-8 mr-10 basis-1/2 rounded-[15px] bg-green-900"}>
+        <section className={"mx-6 mb-8.5 rounded-[15px] bg-green-900 md:mx-[75.5px] md:mb-13.5 lg:mx-0 lg:my-8 lg:mr-10 lg:basis-1/2"}>
           <form.Subscribe
             selector={(state) => state.values}
             children={(values) => {
@@ -173,7 +174,7 @@ function Home() {
                       <p className={"text-preset-5 text-white"}>Tip Amount</p>
                       <p className={"text-preset-6 text-grey-400"}>/ person</p>
                     </div>
-                    <h2 className={"text-preset-1 ml-auto text-green-400"}>
+                    <h2 className={"md:text-preset-1 ml-auto text-[32px] font-bold tracking-[-0.67px] text-green-400"}>
                       ${calculatorResults ? calculatorResults?.tipAmount?.toFixed(2) : "0.00"}
                     </h2>
                   </div>
@@ -183,7 +184,9 @@ function Home() {
                       <p className={"text-preset-5 text-white"}>Total</p>
                       <p className={"text-preset-6 text-grey-400"}>/ person</p>
                     </div>
-                    <h2 className={"text-preset-1 ml-auto text-green-400"}>${calculatorResults ? calculatorResults?.total?.toFixed(2) : "0.00"}</h2>
+                    <h2 className={"md:text-preset-1 ml-auto text-[32px] font-bold tracking-[-0.67px] text-green-400"}>
+                      ${calculatorResults ? calculatorResults?.total?.toFixed(2) : "0.00"}
+                    </h2>
                   </div>
 
                   <button
