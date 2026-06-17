@@ -1,16 +1,25 @@
-export function calculateTip(bill: number, tipPercentage: number, people: number) {
-  if (people === 0) {
+import type { CalculatorFormValues } from "#/routes";
+
+export function getCalculatorResults(values: CalculatorFormValues) {
+  const billNum = parseFloat(values.bill);
+  const tipNum = parseFloat(values.tip.toString());
+  const peopleNum = parseFloat(values.people);
+
+  if (isNaN(billNum) || isNaN(tipNum) || isNaN(peopleNum) || peopleNum <= 0) {
+    return null;
+  }
+  if (peopleNum === 0) {
     return {
       tipAmount: 0,
       total: 0,
     };
   }
 
-  const tipAmount = (bill * tipPercentage) / 100;
-  const total = bill + tipAmount;
+  const tipAmount = (billNum * tipNum) / 100;
+  const total = billNum + tipAmount;
 
   return {
-    tipAmount: parseFloat((tipAmount / people).toFixed(2)),
-    total: parseFloat((total / people).toFixed(2)),
+    tipAmount: parseFloat((tipAmount / peopleNum).toFixed(2)),
+    total: parseFloat((total / peopleNum).toFixed(2)),
   };
 }

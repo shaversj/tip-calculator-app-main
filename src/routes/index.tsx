@@ -1,30 +1,12 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useForm } from "@tanstack/react-form";
-import { calculateTip } from "#/utils/calculator.ts";
+import { getCalculatorResults } from "../utils/calculator";
+import type { CalculatorFormValues } from "#/types/types.ts";
 
 export const Route = createFileRoute("/")({ component: Home });
 
-type CalculatorFormValues = {
-  bill: string;
-  tip: string | number;
-  people: string;
-};
-
-const presetTips = [5, 10, 15, 25, 50];
-
-function getCalculatorResults(values: CalculatorFormValues) {
-  const billNum = parseFloat(values.bill);
-  const tipNum = parseFloat(values.tip.toString());
-  const peopleNum = parseFloat(values.people);
-
-  if (isNaN(billNum) || isNaN(tipNum) || isNaN(peopleNum) || peopleNum <= 0) {
-    return null;
-  }
-
-  return calculateTip(billNum, tipNum, peopleNum);
-}
-
 function Home() {
+  const presetTips = [5, 10, 15, 25, 50];
   const defaultValues: CalculatorFormValues = {
     bill: "",
     tip: "",
@@ -190,7 +172,7 @@ function Home() {
                   </div>
 
                   <button
-                    className={`text-preset-4 mt-auto w-full rounded-[5px] py-3 text-green-900 uppercase focus:ring-2 focus:ring-blue-500 focus:outline-none ${calculatorResults ? "bg-green-400 hover:bg-green-300" : "bg-green-750 hover:bg-green-750 cursor-not-allowed"}`}
+                    className={`text-preset-4 mt-auto w-full rounded-[5px] py-3 text-green-900 uppercase focus:ring-2 focus:ring-blue-500 focus:outline-none ${calculatorResults ? "bg-green-400 hover:bg-green-200" : "bg-green-750 hover:bg-green-750 cursor-not-allowed"}`}
                     disabled={!calculatorResults}
                     type={"button"}
                     onClick={() => {
