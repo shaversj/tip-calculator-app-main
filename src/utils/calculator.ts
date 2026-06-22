@@ -5,14 +5,19 @@ export function getCalculatorResults(values: CalculatorFormValues) {
   const tipNum = parseFloat(values.tip.toString());
   const peopleNum = parseFloat(values.people);
 
-  if (isNaN(billNum) || isNaN(tipNum) || isNaN(peopleNum) || peopleNum <= 0) {
+  if (isNaN(billNum) || isNaN(tipNum) || isNaN(peopleNum)) {
     return null;
   }
+
   if (peopleNum === 0) {
     return {
       tipAmount: 0,
       total: 0,
     };
+  }
+
+  if (peopleNum < 0) {
+    return null;
   }
 
   const tipAmount = (billNum * tipNum) / 100;
