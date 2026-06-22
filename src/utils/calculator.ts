@@ -1,4 +1,4 @@
-import type { CalculatorFormValues } from "#/routes";
+import type { CalculatorFormValues } from "#/types/tip-calculator.ts";
 
 export function getCalculatorResults(values: CalculatorFormValues) {
   const billNum = parseFloat(values.bill);
